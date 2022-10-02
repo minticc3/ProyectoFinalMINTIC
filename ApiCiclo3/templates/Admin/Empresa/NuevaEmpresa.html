@@ -26,7 +26,7 @@
                 {%endif%}
 				<ul class="full-box list-unstyled text-center">
 					<li>
-						<a href="#!" class="btn-exit-system">
+						<a href="/login/" class="btn-exit-system">
 							<i class="zmdi zmdi-power"></i>
 						</a>
 					</li>
@@ -48,7 +48,7 @@
 							<a href="/NuevaEmpresa/"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Nueva Empresa</a>
 						</li>
 						<li>
-							<a href="/ConsultarEmpresa/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Consultar Empresa</a>
+							<a href="/Empresa/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Consultar Empresa</a>
 						</li>
 					</ul>
 				</li>
@@ -115,32 +115,33 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form action="">
+										{% csrf_token %}
+									    <form action="/Empresa/" method="POST">
 											<div class="form-group label-floating">
-												<input class="form-control" type="text">
+												<input class="form-control" type="number" name="id_empresa" >
 											  </div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Nombre</label>
-											  <input class="form-control" type="text">
+											  <input class="form-control" type="text" name="nombre">
 											</div>
 									    	<div class="form-group label-floating">
 												<label class="control-label">Nit</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="nit">
 											  </div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Ciudad</label>
-											  <input class="form-control" type="text">
+											  <input class="form-control" type="text" name="ciudad">
 											</div>
 									    	<div class="form-group label-floating">
 												<label class="control-label">Dirección</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="direccion">
 											</div>																			  											
 											<div class="form-group">
 											  <label class="control-label">Fecha creación</label>
-											  <input class="form-control" type="date">
+											  <input class="form-control" type="date" name="fecha_creacion" value="">
 											</div>
 										    <p class="text-center">
-										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
+										    	<button class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
 										    </p>
 									    </form>
 									</div>
