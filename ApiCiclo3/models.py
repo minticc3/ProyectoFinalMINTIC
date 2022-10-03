@@ -17,7 +17,7 @@ class Empleado(models.Model):
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     fecha_creacion = models.DateField()
 
-class Rol(models.Model): #Realizado en grupo
+class Rol(models.Model):
     id_rol = models.IntegerField(primary_key=True)
     nombre_rol = models.CharField(max_length=20, default="Administrador")
 

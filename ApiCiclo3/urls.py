@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import EmpresaViews
+from .views import EmpresaViews, EmpleadoViews
 
 urlpatterns=[
 
@@ -16,9 +16,12 @@ urlpatterns=[
     path('EliminarEmpresa/<int:ide>', views.EliminarEmpresa, name="Eliminar"),
 
     #Empleado
+    path('Empleado/', EmpleadoViews.as_view(), name="Listar-Nuevo"),
+    path('Empleado/<int:idem>', EmpleadoViews.as_view(), name="Eliminar-Actualizar"),
     path('NuevoEmpleado/', views.NuevoEmpleado, name="NuevoEmpleado"),
-    path('ConsultarEmpleado/', views.ConsultarEmpleado, name="ConsultarEmpleado"),
-    path('EditarEmpleado/', views.EditarEmpleado, name="EditarEmpleado"),
+    path('EditarEmpleado/<int:idem>', views.EditarEmpleado, name="EditarEmpleado"),
+    path('updateEmpleado/', views.updateEmpleado, name="EditarEmpleado"),
+    path('EliminarEmpleado/<int:idem>', views.eliminarEmpleado, name="Eliminar"),
 
     #Usuario
     path('NuevoUsuario/', views.NuevoUsuario, name="NuevoUsuario"),

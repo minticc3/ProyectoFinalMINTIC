@@ -45,10 +45,10 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="/NuevaEmpresa/"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Nuevo Usuario</a>
+							<a href="/NuevaEmpresa/"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Nueva Empresa</a>
 						</li>
 						<li>
-							<a href="/Empresa/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Consultar Usuario</a>
+							<a href="/Empresa/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Consultar Empresa</a>
 						</li>
 					</ul>
 				</li>
@@ -67,7 +67,7 @@
 							<a href="/NuevoEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Empleado</a>
 						</li>
 						<li>
-							<a href="/ConsultarEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Empleado</a>
+							<a href="/Empleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Empleado</a>
 						</li>
 					</ul>
 				</li>
@@ -105,6 +105,7 @@
 		</div>   
 
         <!--<div class="tab-pane fade" id="list">-->
+		{% csrf_token %}	
             <div class="table-responsive">
                 <table class="table table-hover text-center">
                     <thead>
@@ -119,17 +120,19 @@
                         </tr>
                     </thead>
                     <tbody>
+					{% for i in empleados%}	
                         <tr>
-                            <td>1</td>
-                            <td>Kevin</td>
-                            <td>Perez</td>
-                            <td>elcapataz@gmail.com</td>
-                            <td>Calle 1 # 10 - 100</td>
-                            <td>28/09/2022</td>
-                            <td><a href="/EditarEmpleado/" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a>
-                            	<a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+                            <td>{{i.id_empleado}}</td>
+                            <td>{{i.nombre}}</td>
+                            <td>{{i.apellido}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.id_empresa.id_empresa}}</td>
+                            <td>{{i.fecha_creacion}}</td>
+                            <td><a href="/EditarEmpleado/{{i.id_empleado}}" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a>
+                            	<a href="/EliminarEmpleado/{{i.id_empleado}}" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
                         </tr>
                     </tbody>
+					{% endfor %}	
                 </table>
                 <ul class="pagination pagination-sm">
                       <li class="disabled"><a href="#!">«</a></li>
