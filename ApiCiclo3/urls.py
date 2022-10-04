@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
+<<<<<<< HEAD
 from .views import EmpresaViews, EmpleadoViews, UsuarioViews
+=======
+from .views import EmpresaViews, EmpleadoViews, TransaccionViews
+>>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
 
 urlpatterns=[
 
@@ -31,13 +35,11 @@ urlpatterns=[
     path('updateUsuario/', views.updateUsuario, name="EditarUsiario"),
     path('EliminarUsuario/<int:idem>', views.eliminarUsuario, name="Eliminar"),
 
-    #Transacciones Admin
+    #Transacciones
+    path('Transaccion/', TransaccionViews.as_view(), name="Listar-Nuevo"),
     path('NuevaTransaccion/', views.NuevaTransaccion, name="NuevaTransaccion"),
     path('ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccion"),
-
-    #Transacciones Emp
-    path('NuevaTransaccionEm/', views.NuevaTransaccionEm, name="NuevaTransaccionEm"),
-    path('ConsultarTransaccionEm/', views.ConsultarTransaccionEm, name="ConsultarTransaccionEm"),
+    path('Admin/Transaccion/ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccionAdmin"),
 
     #Usuario US
     path('EditarUsuarioUS/', views.EditarUsuarioUS, name="EditarUsuarioUS")

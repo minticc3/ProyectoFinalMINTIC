@@ -1,9 +1,14 @@
 import json
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+<<<<<<< HEAD
 from ApiCiclo3.models import Empleado, Rol, Usuario, Empresa
+=======
+from ApiCiclo3.models import Empleado, Usuario, Empresa, Transaccion
+>>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
 
 
 # Create your views here.
@@ -13,6 +18,7 @@ def loginUser(request):
             UserValidation = Usuario.objects.get(email=request.POST['email'],contrasena=request.POST['contrasena'])
             if(UserValidation.id_rol.id_rol==1):
                 request.session['email']=UserValidation.email
+                request.session['id_usuario']=UserValidation.id_usuario
                 return  render(request, 'Admin/welcome.html')
             elif(UserValidation.id_rol.id_rol==2):
                 request.session['email']=UserValidation.email
@@ -151,13 +157,19 @@ def eliminarEmpleado(request, idem):
 
 ### FIN EMPLEADO #########################
 
+<<<<<<< HEAD
 ################  USUARIO #################
 
 class UsuarioViews(View):
+=======
+##########################  TRANSACCION ###########################
+class TransaccionViews(View):
+>>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+<<<<<<< HEAD
 
     def get(self,request,idem=0):
         if(idem>0):
@@ -187,6 +199,84 @@ class UsuarioViews(View):
                               id_empleado =empleado)
         return redirect('/Usuario/')    
                 
+=======
+    def get(self, request, idtr=0):
+        if(idtr>0):
+            tran = list(Transaccion.objects.filter(id_transaccion = idtr).values())
+            if(len(tran)>0):
+                tranRes = tran[0]
+                data = {'Transaccion=>':tranRes}
+            else:
+                data = {'Transaccion':"Objecto no encontrado"}
+        else:
+             template_name="Admin/Transaccion/ConsultarTransaccion.html"
+             tran = Transaccion.objects.all()
+             #tran = list(Transaccion.objects.values())
+             data = {'transacciones':tran}
+        return render(request, template_name, data)
+        #return JsonResponse(data)
+
+    def post(self, request):
+        template_name="Admin/Transaccion/NuevaTransaccion.html"
+        usu = Usuario.objects.get(id_usuario = request.POST["id_usuario"])
+        empr = Empresa.objects.get(id_empresa = request.POST["id_empresa"])
+        Transaccion.objects.create(id_transaccion = request.POST["id_transaccion"],
+                               fecha = request.POST["fecha"],
+                               concepto = request.POST["concepto"],
+                               monto = request.POST["monto"],
+                               tipo_transaccion = request.POST["tipo_transaccion"],
+                               usuario = usu,
+                               id_empresa = empr)
+        return redirect('/Transaccion/')
+
+def NuevaTransaccion(request):
+    return render(request, 'Admin/Transaccion/NuevaTransaccion.html')   
+
+def ConsultarTransaccion(request, idtr):
+    tran = Transaccion.objects.get(id_transaccion=idtr)
+    data ={'transacciones':tran
+    }
+    return render(request, 'Admin/Transaccion/ConsultarTransaccion.html', data)
+
+# def updateTransaccion(request):
+#         usuario = Usuario.objects.get(id_usuario = request.POST["id_usuario"])
+#         empresa = Empresa.objects.get(id_empresa = request.POST["id_empresa"])
+#         id_transaccion = request.POST['id_transaccion']
+#         fecha = request.POST['fecha']
+#         concepto = request.POST['concepto']
+#         monto = request.POST['monto']
+#         id_usuario = usuario,
+#         id_empresa = empresa
+#         tipo_transaccion = request.POST['tipo_transaccion']
+#         transaccion = Transaccion.objects.get(id_transaccion = id_transaccion)
+#         transaccion.fecha = fecha
+#         transaccion.concepto = concepto
+#         transaccion.monto = monto
+#         transaccion.usuario = id_usuario
+#         transaccion.id_empresa = id_empresa
+#         transaccion.tipo_transaccion = tipo_transaccion
+#         transaccion.save()
+#         return redirect('/Transaccion/')
+
+# def eliminarTransaccion(request, idtr):
+#         Transaccion.objects.filter(id_transaccion = idtr).delete()
+#         return redirect('/Transaccion/')
+
+def NuevaTransaccion(request):
+    return render(request, 'Admin/Transaccion/NuevaTransaccion.html')   
+
+def ConsultarTransaccion(request):
+    return render(request, 'Admin/Transaccion/ConsultarTransaccion.html')   
+
+def NuevaTransaccionEm(request):
+    return render(request, 'Empleado/Transaccion/NuevaTransaccionEm.html')   
+
+def ConsultarTransaccionEm(request):
+    return render(request, 'Empleado/Transaccion/ConsultarTransaccionEm.html')  
+
+########################### FIN TRANSACCION ###########################
+
+>>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
 def NuevoUsuario(request):
     return render(request, 'Admin/Usuario/NuevoUsuario.html')   
 
@@ -224,6 +314,7 @@ def eliminarUsuario(request, idem):
     
 ### FIN USUARIO #########################
 
+<<<<<<< HEAD
 
 def NuevaTransaccion(request):
     return render(request, 'Admin/Transacciones/NuevaTransaccion.html')   
@@ -236,6 +327,10 @@ def NuevaTransaccionEm(request):
 
 def ConsultarTransaccionEm(request):
     return render(request, 'Empleado/Transacciones/ConsultarTransaccionEm.html')   
+=======
+def EditarUsuario(request):
+    return render(request, 'Admin/Usuario/EditarUsuario.html')      
+>>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
 
 def EditarUsuarioUS(request):
     return render(request, 'Usuario/EditarUsuarioUS.html')   

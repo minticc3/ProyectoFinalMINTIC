@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     {% load static %}
-	<title>MinTic Grupo 9 | Empleado</title>
+	<title>MinTic Grupo 9 | Admin</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href='{% static "plantillas/css/main.css" %}' >
@@ -26,7 +26,7 @@
                 {%endif%}
 				<ul class="full-box list-unstyled text-center">
 					<li>
-						<a href="#!" class="btn-exit-system">
+						<a href="/login/" class="btn-exit-system">
 							<i class="zmdi zmdi-power"></i>
 						</a>
 					</li>
@@ -35,9 +35,41 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="home.html">
+					<a href="/login/">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
 					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Empresas <i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href="/NuevaEmpresa/"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Nueva Empresa</a>
+						</li>
+						<li>
+							<a href="/Empresa/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Consultar Empresa</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href="/NuevoUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Usuario</a>
+						</li>
+						<li>
+							<a href="/Usuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
+						</li>
+						<li>
+							<a href="/NuevoEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Empleado</a>
+						</li>
+						<li>
+							<a href="/Empleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Empleado</a>
+						</li>
+					</ul>
 				</li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
@@ -45,10 +77,10 @@
 					</a>
 					<ul class="list-unstyled full-box">
                         <li>
-							<a href="/NuevaTransaccionEm/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nueva Transaccion</a>
+							<a href="/NuevaTransaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nueva Transaccion</a>
 						</li>
 						<li>
-							<a href="/ConsultarTransaccionEm/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
+							<a href="/Transaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
 						</li>
 					</ul>
 				</li>
@@ -70,12 +102,13 @@
         
         <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Empleado <small>Consultar Transacciones</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Administrador <small>Consultar Transacciones</small></h1>
 			</div>
 			<!--<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>-->
 		</div>   
 
         <!--<div class="tab-pane fade" id="list">-->
+			{% csrf_token %}
             <div class="table-responsive">
                 <table class="table table-hover text-center">
                     <thead>
@@ -90,16 +123,19 @@
                         </tr>
                     </thead>
                     <tbody>
+
+					{% for i in transacciones%}	
                         <tr>
-                            <td>1</td>
-                            <td>28/09/2022</td>
-                            <td>Venta Gaseosas</td>
-                            <td>10'000.000 cop</td>
-                            <td>Ingreso</td>
-                            <td>Pepito</td>
-                            <td>1</td>
-                        </tr>
+                            <td>{{i.id_transaccion}}</td>
+                            <td>{{i.fecha}}</td>
+                            <td>{{i.concepto}}</td>
+                            <td>{{i.monto}}</td>
+							<td>{{i.tipo_transaccion}}</td>
+							<td>{{i.usuario.email}}</td>
+                            <td>{{i.id_empresa.nombre}}</td>
+						</tr>
                     </tbody>
+					{% endfor %}
                 </table>
                 <ul class="pagination pagination-sm">
                       <li class="disabled"><a href="#!">«</a></li>

@@ -35,7 +35,7 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="home.html">
+					<a href="/login/">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
 					</a>
 				</li>
@@ -61,7 +61,7 @@
 							<a href="/NuevoUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Usuario</a>
 						</li>
 						<li>
-							<a href="/Usuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
+							<a href="/ConsultarUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
 						</li>
 						<li>
 							<a href="/NuevoEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Empleado</a>
@@ -80,7 +80,7 @@
 							<a href="/NuevaTransaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nueva Transaccion</a>
 						</li>
 						<li>
-							<a href="/ConsultarTransaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
+							<a href="/Transaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
 						</li>
 					</ul>
 				</li>
@@ -113,43 +113,47 @@
 					  	<li class="active"><a href="#new" data-toggle="tab">Nueva</a></li>
 					  	<li><a href="#list" data-toggle="tab">Transacción</a></li>
 					</ul>
+
+					{% if request.session.id_usuario %}
+					<h1>{{request.session.id_usuario}}</h1>
+
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade active in" id="new">
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form action="">
+									    <form action="/Transaccion/" method="post">
 											<div class="form-group label-floating">
-												<input class="form-control" type="text">
+												<label class="control-label">ID Transaccion</label>
+												<input class="form-control" type="number" name="id_transaccion">
 											  </div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Fecha</label>
-											  <input class="form-control" type="date">
+											  <br></br>
+											  <input class="form-control" type="date" name="fecha">
 											</div>
 									    	<div class="form-group label-floating">
 												<label class="control-label">Concepto</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="concepto">
 											  </div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Monto</label>
-											  <input class="form-control" type="text">
+											  <input class="form-control" type="text" name="monto">
 											</div>																		  											
 									    	<div class="form-group label-floating">
 												<label class="control-label">Tipo</label>
-                                                <select class="form-control" name="select">
+                                                <select class="form-control" type="text" name="tipo_transaccion">
                                                     <option class="form-control" value="Ingreso">Ingreso</option>
                                                     <option class="form-control" value="Egreso" selected>Egreso</option>
                                                   </select>
-
-												<!--<input class="form-control" type="text">-->
 											</div>
 											<div class="form-group label-floating">
-												<label class="control-label">Usuario</label>
-												<input class="form-control" type="text">
+												<label class="control-label">ID Usuario</label>
+												<input class="form-control" type="number" name="id_usuario" value="{{request.session.id_usuario}}">
 											</div>		
 									    	<div class="form-group label-floating">
 												<label class="control-label">ID Empresa</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="number" name="id_empresa">
 											</div>	
 										    <p class="text-center">
 										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
@@ -158,7 +162,8 @@
 									</div>
 								</div>
 							</div>
-						</div>    
+						</div>  
+					{%endif%}  
 
 	<!--====== Scripts -->
 	<script src='{%static "plantillas/js/jquery-3.1.1.min.js" %}'></script>

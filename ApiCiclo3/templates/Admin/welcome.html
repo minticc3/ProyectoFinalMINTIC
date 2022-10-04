@@ -22,6 +22,7 @@
                     {% if request.session.email %}
 					<img src= '{%static "plantillas/assets/img/avatar.jpg" %}' alt="UserIcon">
 					<figcaption class="text-center text-titles">{{request.session.email}}</figcaption>
+					<!-- <figcaption class="text-center text-titles">{{request.session.id_usuario}}</figcaption> -->
 				</figure>
                 {%endif%}
 				<ul class="full-box list-unstyled text-center">
@@ -80,7 +81,7 @@
 							<a href="/NuevaTransaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nueva Transaccion</a>
 						</li>
 						<li>
-							<a href="/ConsultarTransaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
+							<a href="/Transaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
 						</li>
 					</ul>
 				</li>
@@ -102,8 +103,14 @@
 		<div class="container-fluid">
 			<div class="page-header">
 			  <h1 class="text-titles">MinTic <small>Administrador</small></h1>
+		{% if request.session.id_usuario %}
+		<h1>{{request.session.id_usuario}}</h1>
 			</div>
+			
 		</div>
+
+		{%endif%}
+
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
