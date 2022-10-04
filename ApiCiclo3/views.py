@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from ApiCiclo3.models import Empleado, Usuario, Empresa
+from ApiCiclo3.models import Empleado, Rol, Usuario, Empresa
 
 
 # Create your views here.
@@ -151,14 +151,79 @@ def eliminarEmpleado(request, idem):
 
 ### FIN EMPLEADO #########################
 
+################  USUARIO #################
+
+class UsuarioViews(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+    def get(self,request,idem=0):
+        if(idem>0):
+            usu=list(Usuario.objects.filter(id_usuario=idem).values())
+            if(len(usu)>0):
+                usuRes=usu[0]
+                data={'Usuario=>':usuRes}
+            else:
+                data={'Usuario=>':"Usuario no encontrado"}    
+        else:
+            template_name="Admin/Usuario/ConsultarUsuario.html"
+            usu = Usuario.objects.all()
+            data= {'usuario':usu}
+        return render(request, template_name, data)    
+
+    
+    def post(self, request):
+        template_name="Admin/Usuario/NuevoUsuario.html"
+        empleado=Empleado.objects.get(id_empleado=request.POST["id_empleado"])
+        rol=Rol.objects.get(id_rol=request.POST["id_rol"])
+        Usuario.objects.create(id_usuario=request.POST["id_usuario"],
+                              email=request.POST["email"],
+                              imagen=request.POST["imagen"],
+                              contrasena=request.POST["contrasena"],
+                              id_rol=rol,
+                              fecha_creacion=request.POST["fecha_creacion"],
+                              id_empleado =empleado)
+        return redirect('/Usuario/')    
+                
 def NuevoUsuario(request):
     return render(request, 'Admin/Usuario/NuevoUsuario.html')   
 
-def ConsultarUsuario(request):
-    return render(request, 'Admin/Usuario/ConsultarUsuario.html')      
+def EditarUsuario(request, idem):
+    usu = Usuario.objects.get(id_usuario= idem)
+    data ={'usuario': usu}
+    return render(request, 'Admin/Usuario/EditarUsuario.html', data)
 
-def EditarUsuario(request):
-    return render(request, 'Admin/Usuario/EditarUsuario.html')     
+
+
+def updateUsuario(request):
+    empleado=Empleado.objects.get(id_empleado=request.POST["id_empleado"])
+    rol=Rol.objects.get(id_rol=request.POST["id_rol"])
+    id_usuario=request.POST["id_usuario"]
+    email=request.POST["email"]
+    imagen=request.POST["imagen"]
+    contrasena=request.POST["contrasena"]
+    id_rol=rol
+    fecha_creacion=request.POST["fecha_creacion"]
+    id_empleado =empleado
+    usuario=Usuario.objects.get(id_usuario=request.POST["id_usuario"])
+    usuario.email = email
+    usuario.imagen = imagen
+    usuario.contrasena = contrasena
+    usuario.id_rol = id_rol
+    usuario.fecha_creacion = fecha_creacion
+    usuario.id_empleado = id_empleado
+    usuario.save()
+    return redirect('/Usuario/')
+
+
+def eliminarUsuario(request, idem):    
+    Usuario.objects.filter(id_usuario=idem).delete()
+    return redirect('/Usuario/')
+    
+### FIN USUARIO #########################
+
 
 def NuevaTransaccion(request):
     return render(request, 'Admin/Transacciones/NuevaTransaccion.html')   

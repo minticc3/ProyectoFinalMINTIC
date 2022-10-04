@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import EmpresaViews, EmpleadoViews
+from .views import EmpresaViews, EmpleadoViews, UsuarioViews
 
 urlpatterns=[
 
@@ -24,9 +24,12 @@ urlpatterns=[
     path('EliminarEmpleado/<int:idem>', views.eliminarEmpleado, name="Eliminar"),
 
     #Usuario
+    path('Usuario/', UsuarioViews.as_view(), name="Lista-Nuevo"),
+    path('Usuario/<int:idem>', UsuarioViews.as_view(), name="Eliminar-Actualizar"),
     path('NuevoUsuario/', views.NuevoUsuario, name="NuevoUsuario"),
-    path('ConsultarUsuario/', views.ConsultarUsuario, name="ConsultarUsuario"),
-    path('EditarUsuario/', views.EditarUsuario, name="EditarUsuario"),
+    path('EditarUsuario/<int:idem>', views.EditarUsuario, name="EditarUsuario"),
+    path('updateUsuario/', views.updateUsuario, name="EditarUsiario"),
+    path('EliminarUsuario/<int:idem>', views.eliminarUsuario, name="Eliminar"),
 
     #Transacciones Admin
     path('NuevaTransaccion/', views.NuevaTransaccion, name="NuevaTransaccion"),

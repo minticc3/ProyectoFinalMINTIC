@@ -61,7 +61,7 @@
 							<a href="/NuevoUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Usuario</a>
 						</li>
 						<li>
-							<a href="/ConsultarUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
+							<a href="/Usuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
 						</li>
 						<li>
 							<a href="/NuevoEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Empleado</a>
@@ -115,33 +115,34 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form action="">
+								      {% csrf_token %}
+										<form action ="/Usuario/" method="POST">
 									    	<div class="form-group label-floating">
-											  <input class="form-control" type="text">
+											  <input class="form-control" type="number" name="id_usuario">
 											</div>
 									    	<div class="form-group label-floating">
 												<label class="control-label">Email</label>
-												<input class="form-control" type="email">
+												<input class="form-control" type="email" name="email">
 											  </div>
 									    	<div class="form-group label-floating">
 												<label class="control-label">Contraseña</label>
-												<input class="form-control" type="password">
+												<input class="form-control" type="password" name="contrasena">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Rol</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="number" name="id_rol">
 											</div>																						  											
 											<div class="form-group">
 											  <label class="control-label">Fecha creación</label>
-											  <input class="form-control" type="date">
+											  <input class="form-control" type="date" name="fecha_creacion">
 											</div>
                                             <div class="form-group">
                                                 <label class="control-label">ID Empleado</label>
-                                                <input class="form-control" type="text">
+                                                <input class="form-control" type="number" name="id_empleado">
                                             </div>
 											<div class="form-group">
 												<label for="exampleFormControlFile1"> Cargar Imagen</label>
-												<input type="file" class="form-control-file" id="exampleFormControlFile1">
+												<input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagen">
 											</div>
 											<!--<div class="form-group label-floating">
 												<label class="control-label">Imagen</label>

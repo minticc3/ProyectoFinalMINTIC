@@ -61,7 +61,7 @@
 							<a href="/NuevoUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Usuario</a>
 						</li>
 						<li>
-							<a href="/ConsultarUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
+							<a href="/Usuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
 						</li>
 						<li>
 							<a href="/NuevoEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Empleado</a>
@@ -120,18 +120,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>elcapataz@gmail.com</td>
-                            <td>Perez</td>
-                            <td>Admin123</td>
-                            <td>Admin</td>
-                            <td>28/09/2022</td>
-							<td>1</td>
-                            <td><a href="/EditarUsuario/" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a>
-                            	<a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+                   {%for i in usuario%}   
+						<tr>
+                            <td>{{i.id_usuario}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.imagen}}</td>
+                            <td>{{i.contrasena}}</td>
+                            <td>{{i.id_rol.id_rol}}</td>
+                            <td>{{i.fecha_creacion}}</td>
+							<td>{{i.id_empleado.id_empleado}}</td>
+                            <td><a href="/EditarUsuario/{{i.id_usuario}}" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a>
+                            	<a href="/EliminarUsuario/{{i.id_usuario}}" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
                         </tr>
                     </tbody>
+					{% endfor %}
                 </table>
                 <ul class="pagination pagination-sm">
                       <li class="disabled"><a href="#!">«</a></li>
