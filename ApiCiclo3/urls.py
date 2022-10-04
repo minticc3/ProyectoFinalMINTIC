@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import EmpresaViews, EmpleadoViews
+from .views import EmpresaViews, EmpleadoViews, TransaccionViews
 
 urlpatterns=[
 
@@ -28,13 +28,11 @@ urlpatterns=[
     path('ConsultarUsuario/', views.ConsultarUsuario, name="ConsultarUsuario"),
     path('EditarUsuario/', views.EditarUsuario, name="EditarUsuario"),
 
-    #Transacciones Admin
+    #Transacciones
+    path('Transaccion/', TransaccionViews.as_view(), name="Listar-Nuevo"),
     path('NuevaTransaccion/', views.NuevaTransaccion, name="NuevaTransaccion"),
     path('ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccion"),
-
-    #Transacciones Emp
-    path('NuevaTransaccionEm/', views.NuevaTransaccionEm, name="NuevaTransaccionEm"),
-    path('ConsultarTransaccionEm/', views.ConsultarTransaccionEm, name="ConsultarTransaccionEm"),
+    path('Admin/Transaccion/ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccionAdmin"),
 
     #Usuario US
     path('EditarUsuarioUS/', views.EditarUsuarioUS, name="EditarUsuarioUS")

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     {% load static %}
-	<title>MinTic Grupo 9 | Empleado</title>
+	<title>MinTic Grupo 9 | Admin</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href='{% static "plantillas/css/main.css" %}' >
@@ -26,7 +26,7 @@
                 {%endif%}
 				<ul class="full-box list-unstyled text-center">
 					<li>
-						<a href="#!" class="btn-exit-system">
+						<a href="/login/" class="btn-exit-system">
 							<i class="zmdi zmdi-power"></i>
 						</a>
 					</li>
@@ -35,9 +35,41 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="home.html">
+					<a href="/login/">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
 					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Empresas <i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href="/NuevaEmpresa/"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Nueva Empresa</a>
+						</li>
+						<li>
+							<a href="/Empresa/"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Consultar Empresa</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href="/NuevoUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Usuario</a>
+						</li>
+						<li>
+							<a href="/ConsultarUsuario/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Usuario</a>
+						</li>
+						<li>
+							<a href="/NuevoEmpleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Nuevo Empleado</a>
+						</li>
+						<li>
+							<a href="/Empleado/"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Consultar Empleado</a>
+						</li>
+					</ul>
 				</li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
@@ -45,10 +77,10 @@
 					</a>
 					<ul class="list-unstyled full-box">
                         <li>
-							<a href="/NuevaTransaccionEm/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nueva Transaccion</a>
+							<a href="/NuevaTransaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nueva Transaccion</a>
 						</li>
 						<li>
-							<a href="/ConsultarTransaccionEm/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
+							<a href="/Transaccion/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Consultar Transacciones</a>
 						</li>
 					</ul>
 				</li>
@@ -70,7 +102,7 @@
         
         <div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Empleado <small>Nueva Transacción</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Administrador <small>Nueva Transacción</small></h1>
 			</div>
 			<!--<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>-->
 		</div>
@@ -81,43 +113,47 @@
 					  	<li class="active"><a href="#new" data-toggle="tab">Nueva</a></li>
 					  	<li><a href="#list" data-toggle="tab">Transacción</a></li>
 					</ul>
+
+					{% if request.session.id_usuario %}
+					<h1>{{request.session.id_usuario}}</h1>
+
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade active in" id="new">
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form action="">
+									    <form action="/Transaccion/" method="post">
 											<div class="form-group label-floating">
-												<input class="form-control" type="text">
+												<label class="control-label">ID Transaccion</label>
+												<input class="form-control" type="number" name="id_transaccion">
 											  </div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Fecha</label>
-											  <input class="form-control" type="date">
+											  <br></br>
+											  <input class="form-control" type="date" name="fecha">
 											</div>
 									    	<div class="form-group label-floating">
 												<label class="control-label">Concepto</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="text" name="concepto">
 											  </div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Monto</label>
-											  <input class="form-control" type="text">
+											  <input class="form-control" type="text" name="monto">
 											</div>																		  											
 									    	<div class="form-group label-floating">
 												<label class="control-label">Tipo</label>
-                                                <select class="form-control" name="select">
+                                                <select class="form-control" type="text" name="tipo_transaccion">
                                                     <option class="form-control" value="Ingreso">Ingreso</option>
                                                     <option class="form-control" value="Egreso" selected>Egreso</option>
                                                   </select>
-
-												<!--<input class="form-control" type="text">-->
 											</div>
 											<div class="form-group label-floating">
-												<label class="control-label">Usuario</label>
-												<input class="form-control" type="text">
+												<label class="control-label">ID Usuario</label>
+												<input class="form-control" type="number" name="id_usuario" value="{{request.session.id_usuario}}">
 											</div>		
 									    	<div class="form-group label-floating">
 												<label class="control-label">ID Empresa</label>
-												<input class="form-control" type="text">
+												<input class="form-control" type="number" name="id_empresa">
 											</div>	
 										    <p class="text-center">
 										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
@@ -126,7 +162,8 @@
 									</div>
 								</div>
 							</div>
-						</div>    
+						</div>  
+					{%endif%}  
 
 	<!--====== Scripts -->
 	<script src='{%static "plantillas/js/jquery-3.1.1.min.js" %}'></script>
