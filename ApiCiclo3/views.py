@@ -4,11 +4,8 @@ from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-<<<<<<< HEAD
 from ApiCiclo3.models import Empleado, Rol, Usuario, Empresa
-=======
 from ApiCiclo3.models import Empleado, Usuario, Empresa, Transaccion
->>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
 
 
 # Create your views here.
@@ -157,20 +154,9 @@ def eliminarEmpleado(request, idem):
 
 ### FIN EMPLEADO #########################
 
-<<<<<<< HEAD
 ################  USUARIO #################
 
 class UsuarioViews(View):
-=======
-##########################  TRANSACCION ###########################
-class TransaccionViews(View):
->>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-<<<<<<< HEAD
-
     def get(self,request,idem=0):
         if(idem>0):
             usu=list(Usuario.objects.filter(id_usuario=idem).values())
@@ -198,8 +184,12 @@ class TransaccionViews(View):
                               fecha_creacion=request.POST["fecha_creacion"],
                               id_empleado =empleado)
         return redirect('/Usuario/')    
-                
-=======
+
+##########################  TRANSACCION ###########################
+class TransaccionViews(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     def get(self, request, idtr=0):
         if(idtr>0):
             tran = list(Transaccion.objects.filter(id_transaccion = idtr).values())
@@ -276,7 +266,6 @@ def ConsultarTransaccionEm(request):
 
 ########################### FIN TRANSACCION ###########################
 
->>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
 def NuevoUsuario(request):
     return render(request, 'Admin/Usuario/NuevoUsuario.html')   
 
@@ -314,23 +303,20 @@ def eliminarUsuario(request, idem):
     
 ### FIN USUARIO #########################
 
-<<<<<<< HEAD
 
-def NuevaTransaccion(request):
-    return render(request, 'Admin/Transacciones/NuevaTransaccion.html')   
+#def NuevaTransaccion(request):
+ #   return render(request, 'Admin/Transacciones/NuevaTransaccion.html')
 
 def ConsultarTransaccion(request):
     return render(request, 'Admin/Transacciones/ConsultarTransaccion.html')   
 
 def NuevaTransaccionEm(request):
-    return render(request, 'Empleado/Transacciones/NuevaTransaccionEm.html')   
+    return render(request, 'Empleado/Transaccion/NuevaTransaccionEm.html')
 
 def ConsultarTransaccionEm(request):
-    return render(request, 'Empleado/Transacciones/ConsultarTransaccionEm.html')   
-=======
-def EditarUsuario(request):
-    return render(request, 'Admin/Usuario/EditarUsuario.html')      
->>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
+    return render(request, 'Empleado/Transacciones/ConsultarTransaccionEm.html')
+#def EditarUsuario(request):
+ #   return render(request, 'Admin/Usuario/EditarUsuario.html')
 
 def EditarUsuarioUS(request):
     return render(request, 'Usuario/EditarUsuarioUS.html')   

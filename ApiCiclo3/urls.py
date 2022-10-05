@@ -1,10 +1,7 @@
 from django.urls import path
 from . import views
-<<<<<<< HEAD
-from .views import EmpresaViews, EmpleadoViews, UsuarioViews
-=======
-from .views import EmpresaViews, EmpleadoViews, TransaccionViews
->>>>>>> a32da87bcd9037a0fc3dd189d82b4e643b551d40
+from .views import EmpresaViews, EmpleadoViews, TransaccionViews, UsuarioViews
+
 
 urlpatterns=[
 
@@ -39,6 +36,7 @@ urlpatterns=[
     path('Transaccion/', TransaccionViews.as_view(), name="Listar-Nuevo"),
     path('NuevaTransaccion/', views.NuevaTransaccion, name="NuevaTransaccion"),
     path('ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccion"),
+    path('NuevaTransaccionEm/', views.NuevaTransaccionEm, name="Nueva Empleado"),
     path('Admin/Transaccion/ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccionAdmin"),
 
     #Usuario US

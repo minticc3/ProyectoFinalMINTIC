@@ -111,11 +111,11 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">Email</th>
-                            <th class="text-center">Imagen</th>
-                            <th class="text-center">Contraseña</th>
+                            <!--<th class="text-center">Imagen</th>-->
+                            <!--<th class="text-center">Contraseña</th>-->
                             <th class="text-center">Rol</th>
                             <th class="text-center">Fecha Creación</th>
-							<th class="text-center">ID Empleado</th>
+							<th class="text-center">Empleado</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -124,11 +124,11 @@
 						<tr>
                             <td>{{i.id_usuario}}</td>
                             <td>{{i.email}}</td>
-                            <td>{{i.imagen}}</td>
-                            <td>{{i.contrasena}}</td>
-                            <td>{{i.id_rol.id_rol}}</td>
+                            <!--<td>{{i.imagen}}</td>-->
+                            <!--<td>{{i.contrasena}}</td>-->
+                            <td>{{i.id_rol.nombre_rol}}</td>
                             <td>{{i.fecha_creacion}}</td>
-							<td>{{i.id_empleado.id_empleado}}</td>
+							<td>{{i.id_empleado.nombre}} {{i.id_empleado.apellido}}</td>
                             <td><a href="/EditarUsuario/{{i.id_usuario}}" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a>
                             	<a href="/EliminarUsuario/{{i.id_usuario}}" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
                         </tr>
