@@ -1,149 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    {% load static %}
-	<title>MinTic Grupo 9 | Usuario</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" href='{% static "plantillas/css/main.css" %}' >
+  {% load static %}
+  <title>MinTic Grupo 9 | Usuario</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <link rel="stylesheet" href='{% static "plantillas/css/main.css" %}' />
 </head>
+
 <body>
-	<!-- SideBar -->
-	<section class="full-box cover dashboard-sideBar">
-		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
-		<div class="full-box dashboard-sideBar-ct">
-			<!--SideBar Title -->
-			<div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
-				MinTic Grupo 9 <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
-			</div>
-			<!-- SideBar User info -->
-			<div class="full-box dashboard-sideBar-UserInfo">
-				<figure class="full-box">
-                    {% if request.session.email %}
-					<img src= '{%static "plantillas/assets/img/avatar.jpg" %}' alt="UserIcon">
-					<figcaption class="text-center text-titles">{{request.session.email}}</figcaption>
-				</figure>
-                {%endif%}
-				<ul class="full-box list-unstyled text-center">
-					<li>
-						<a href="#!" class="btn-exit-system">
-							<i class="zmdi zmdi-power"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<!-- SideBar Menu -->
-			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
-				<li>
-					<a href="*">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
-					</a>
-				</li>
-				<li>
-					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-card zmdi-hc-fw"></i> Usuario <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
-					<ul class="list-unstyled full-box">
-                        <li>
-							<a href="/EditarUsuarioUS/"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Editar Usuario</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</section>
+  <!-- SideBar -->
+  <div>
+    <div class="full-box cover dashboard-sideBar">
+      <div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
+      <div class="full-box dashboard-sideBar-ct">
+        <!--SideBar Title -->
+        <div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
+          MinTic Grupo 9
+          <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
+        </div>
+        <!-- SideBar User info -->
+        <div class="full-box dashboard-sideBar-UserInfo">
+          <figure class="full-box">
+            {% if request.session.email %}
+            <img src='{%static "plantillas/assets/img/avatar.jpg" %}' alt="UserIcon" />
+            <figcaption class="text-center text-titles">
+              {{request.session.email}}
+            </figcaption>
+          </figure>
+          {%endif%}
+          <ul class="full-box list-unstyled text-center">
+            <li>
+              <a href="#!" class="btn-exit-system">
+                <i class="zmdi zmdi-power"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- SideBar Menu -->
+        <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+          <li>
+            <a href="/UsuarioUs/{{usuario.0.id_usuario}}">
+              <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
+            </a>
+          </li>
+          <li>
+            <a href="#!" class="btn-sideBar-SubMenu">
+              <i class="zmdi zmdi-card zmdi-hc-fw"></i> Usuario
+              <i class="zmdi zmdi-caret-down pull-right"></i>
+            </a>
+            <ul class="list-unstyled full-box">
+              <li>
+                <a href="/EditarUsuarioUS/{{usuario.0.id_usuario}}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Editar
+                  Usuario</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    	<!-- Content page-->
-	<section class="full-box dashboard-contentPage">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-			</ul>
-		</nav>
-	
-        
-        <div class="container-fluid">
-			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-case zmdi-hc-fw"></i> Usuario <small>Datos Usuario</small></h1>
-			</div>
-			<!--<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>-->
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#new" data-toggle="tab">Datos</a></li>
-					  	<li><a href="#list" data-toggle="tab">Usuario</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="new">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form action="">
-									    	<div class="form-group label-floating">
-											  <input class="form-control" type="text">
-											</div>
-									    	<div class="form-group label-floating">
-												<label class="control-label">Email</label>
-												<input class="form-control" type="email">
-											  </div>
-									    	<div class="form-group label-floating">
-												<label class="control-label">Contraseña</label>
-												<input class="form-control" type="password">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Rol</label>
-												<input class="form-control" type="text">
-											</div>																						  											
-											<div class="form-group">
-											  <label class="control-label">Fecha creación</label>
-											  <input class="form-control" type="date">
-											</div>
-                                            <div class="form-group">
-                                                <label class="control-label">ID Empleado</label>
-                                                <input class="form-control" type="text">
-                                            </div>
-											<div class="form-group">
-												<label for="exampleFormControlFile1"> Cargar Imagen</label>
-												<input type="file" class="form-control-file" id="exampleFormControlFile1">
-											</div>
-										    <p class="text-center">
-										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
-										    </p>
-									    </form>
-									</div>
-								</div>
-							</div>
-						</div>    
-	</section>
 
-	<!-- Content page-->
-	<section class="full-box dashboard-contentPage">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-			</ul>
-		</nav>
+    <!-- Content page-->
+    <div class="full-box dashboard-contentPage">
+      <!-- NavBar -->
+      <nav class="full-box dashboard-Navbar">
+        <ul class="full-box list-unstyled text-right">
+          <li class="pull-left">
+            <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+          </li>
+        </ul>
+      </nav>
 
-	</section>
-	
-	<!--====== Scripts -->
-	<script src='{%static "plantillas/js/jquery-3.1.1.min.js" %}'></script>
-	<script src='{%static "plantillas/js/sweetalert2.min.js"  %}'></script>
-	<script src='{%static "plantillas/js/bootstrap.min.js" %}'></script>
-	<script src='{%static "plantillas/js/material.min.js"  %}'></script>
-	<script src='{%static "plantillas/js/ripples.min.js"  %}'></script>
-	<script src='{%static "plantillas/js/jquery.mCustomScrollbar.concat.min.js" %}'></script>
-	<script src='{%static "plantillas/js/main.js" %}'></script>
-	<script>
-		$.material.init();
-	</script>
+      <div class="container-fluid">
+        <div class="page-header">
+          <h1 class="text-titles">
+            <i class="zmdi zmdi-case zmdi-hc-fw"></i> Usuario
+            <small>Datos Usuario</small>
+          </h1>
+        </div>
+        <!--<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas reiciendis tempora voluptatum eius porro ipsa quae voluptates officiis sapiente sunt dolorem, velit quos a qui nobis sed, dignissimos possimus!</p>-->
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="nav nav-tabs" style="margin-bottom: 15px">
+              <li class="active"><a href="#new" data-toggle="tab">Datos</a></li>
+              <li><a href="#list" data-toggle="tab">Usuario</a></li>
+            </ul>
+            <table class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Correo Electronico</th>
+                  <th class="text-center">Fecha</th>
+                  <th class="text-center">id Empleado</th>
+                  <th class="text-center">admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{usuario.0.id_usuario}}</td>
+                  <td>{{usuario.0.email}}</td>
+                  <td>{{usuario.0.fecha_creacion}}</td>
+                  <td>{{usuario.0.id_empleado_id}}</td>
+                  <td>{{usuario.0.id_rol_id}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="/EditarUsuarioUS/{{usuario.0.id_usuario}}">Editar Usuario</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input value={{usuario}} id="usuario_input"/>
+    <!-- Content page-->
+    <div class="full-box">
+      <!-- NavBar -->
+      <nav class="full-box dashboard-Navbar">
+        <ul class="full-box list-unstyled text-right">
+          <li class="pull-left">
+            <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!--====== Scripts -->
+  <script>
+    console.log(document.querySelector("#usuario_input"))
+  </script>
+  <script src='{%static "plantillas/js/jquery-3.1.1.min.js" %}'></script>
+  <script src='{%static "plantillas/js/sweetalert2.min.js"  %}'></script>
+  <script src='{%static "plantillas/js/bootstrap.min.js" %}'></script>
+  <script src='{%static "plantillas/js/material.min.js"  %}'></script>
+  <script src='{%static "plantillas/js/ripples.min.js"  %}'></script>
+  <script src='{%static "plantillas/js/jquery.mCustomScrollbar.concat.min.js" %}'></script>
+  <script src='{%static "plantillas/js/main.js" %}'></script>
+  <script>
+    $.material.init();
+  </script>
 </body>
+
 </html>

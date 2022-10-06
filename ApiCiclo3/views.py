@@ -9,6 +9,9 @@ from ApiCiclo3.models import Empleado, Usuario, Empresa, Transaccion
 
 
 # Create your views here.
+# def index(request):
+#     return redirect('/login/')
+
 def loginUser(request):
     if(request.method=='POST'):
         try:
@@ -22,7 +25,7 @@ def loginUser(request):
                 return  render(request, 'Empleado/welcome.html')
             elif(UserValidation.id_rol.id_rol==3):
                 request.session['email']=UserValidation.email
-                return  render(request, 'Usuario/welcome.html')                
+                return  redirect(f'/UsuarioUs/{UserValidation.id_usuario}')               
         except Usuario.DoesNotExist:
             return render(request, 'login/login.html')
             #message.warning(request, "Usuario o Contraseña Incorrectos")
@@ -317,6 +320,13 @@ def ConsultarTransaccionEm(request):
     return render(request, 'Empleado/Transacciones/ConsultarTransaccionEm.html')
 #def EditarUsuario(request):
  #   return render(request, 'Admin/Usuario/EditarUsuario.html')
-
-def EditarUsuarioUS(request):
-    return render(request, 'Usuario/EditarUsuarioUS.html')   
+def home(request, idem=0):
+    if(idem > 0):
+        usu = list(Usuario.objects.filter(id_usuario=idem).values())     
+        data ={'usuario': usu}
+        return render(request, 'Usuario/welcome.html', data)
+def EditarUsuarioUS(request, idem=0):
+    if(idem>0):
+        usu = list(Usuario.objects.filter(id_usuario=idem).values()) 
+        data ={'usuario': usu}
+        return render(request, 'Usuario/EditarUsuarioUS.html', data)   

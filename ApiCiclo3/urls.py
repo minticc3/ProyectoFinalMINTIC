@@ -4,7 +4,7 @@ from .views import EmpresaViews, EmpleadoViews, TransaccionViews, UsuarioViews
 
 
 urlpatterns=[
-
+    # path('/', views.index, name="index"),
     #Login
     path('login/',views.loginUser, name="Login"),
 
@@ -40,5 +40,6 @@ urlpatterns=[
     path('Admin/Transaccion/ConsultarTransaccion/', views.ConsultarTransaccion, name="ConsultarTransaccionAdmin"),
 
     #Usuario US
-    path('EditarUsuarioUS/', views.EditarUsuarioUS, name="EditarUsuarioUS")
+    path('UsuarioUs/<int:idem>', views.home, name="home"),
+    path('EditarUsuarioUS/<int:idem>', views.EditarUsuarioUS, name="EditarUsuarioUS")
 ]
