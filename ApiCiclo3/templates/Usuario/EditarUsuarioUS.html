@@ -85,31 +85,31 @@
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
 									    <form action="">
 									    	<div class="form-group label-floating">
-                                                <input class="form-control" type="text">
+                                                <input class="form-control" type="text" value="{{usuario.0.id_usuario}}" >
                                               </div>
                                               <div class="form-group label-floating">
                                                   <label class="control-label">Email</label>
-                                                  <input class="form-control" type="email" placeholder="                     correo actual es {{usuario.0.email}}">
+                                                  <input class="form-control" type="email" value="{{usuario.0.email}}">                   
                                                 </div>
-                                              <div class="form-group label-floating">
+                                              <!-- <div class="form-group label-floating">
                                                 <label class="control-label">Imagen</label>
-                                                <input class="form-control" type="text">
-                                              </div>
+                                                <input class="form-control" type="text" value="{{usuario.0.Imagen}}">
+                                              </div> -->
                                               <div class="form-group label-floating">
                                                   <label class="control-label">Contraseña</label>
-                                                  <input class="form-control" type="password">
+                                                  <input class="form-control" type="password" value="{{usuario.0.Contraseña}}">
                                               </div>
                                               <div class="form-group label-floating">
                                                   <label class="control-label">Rol</label>
-                                                  <input class="form-control" type="text">
+                                                  <input class="form-control" type="text" value="{{usuario.0.Rol}}">
                                               </div>																						  											
                                               <div class="form-group">
                                                 <label class="control-label">Fecha creación</label>
-                                                <input class="form-control" type="date">
+                                                <input class="form-control" type="date" value="{{usuario.0.fecha_creacion}}">
                                               </div>
                                               <div class="form-group">
                                                   <label class="control-label">ID Empleado</label>
-                                                  <input class="form-control" type="text">
+                                                  <input class="form-control" type="text" value="{{usuario.0.id_empleado}}">
                                               </div>
 										    <p class="text-center">
 										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
